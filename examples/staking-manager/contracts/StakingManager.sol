@@ -35,8 +35,8 @@ contract StakingManager {
     /// @dev This emits an Delegate event.
     /// @param _validatorAddr The address of the validator.
     /// @param _amount The amount of tokens to stake in aevmos.
-    /// @return completionTime The completion time of the staking transaction.
-    function stakeTokens(string memory _validatorAddr, uint256 _amount) public returns (int64 completionTime) {
+    /// @return success Whether the call was successful or not.
+    function stakeTokens(string memory _validatorAddr, uint256 _amount) public returns (bool success) {
         return STAKING_CONTRACT.delegate(msg.sender, _validatorAddr, _amount);
     }
 
@@ -64,7 +64,8 @@ contract StakingManager {
     /// @param _validatorAddr The address of the validator.
     /// @param _amount The amount of tokens to cancel the unbonding delegation in aevmos.
     /// @param _creationHeight The creation height of the unbonding delegation.
-    function cancelUnbondingDelegation(string memory _validatorAddr, uint256 _amount, uint256 _creationHeight) public returns (int64 completionTime) {
+    /// @return success Whether the call was successful or not.
+    function cancelUnbondingDelegation(string memory _validatorAddr, uint256 _amount, uint256 _creationHeight) public returns (bool success) {
         return STAKING_CONTRACT.cancelUnbondingDelegation(msg.sender, _validatorAddr, _amount, _creationHeight);
     }
 
